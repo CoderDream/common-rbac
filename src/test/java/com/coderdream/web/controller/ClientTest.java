@@ -106,7 +106,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[\"projecteval:view\",\"profileeval:view\",\"task:view\",\"profile:view\",\"profile:update\"]";
+		String expected = "[\"projecteval:view\",\"profileeval:view\",\"profile:*\",\"profile:view\",\"profile:update\"]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -120,7 +120,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[\"projecteval:*\",\"profileeval:view\",\"task:*\",\"profile:view\"]";
+		String expected = "[\"projecteval:*\",\"profileeval:view\",\"task:*\",\"profile:*\",\"profile:view\"]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -134,7 +134,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[\"projecteval:view\",\"profileeval:*\",\"task:view\",\"profile:view\"]";
+		String expected = "[\"projecteval:view\",\"profileeval:*\",\"task:view\",\"profile:*\",\"profile:view\"]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -148,7 +148,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[\"projecteval:view\",\"profileeval:*\",\"task:view\",\"profile:view\"]";
+		String expected = "[\"projecteval:view\",\"profileeval:*\",\"task:view\",\"profile:*\",\"profile:view\"]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -162,7 +162,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[65,68,70,75,80]";
+		String expected = "[66,68,70,75,80]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -176,7 +176,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[61,70,71,80]";
+		String expected = "[61,66,70,71,80]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -190,7 +190,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[65,70,75,76]";
+		String expected = "[65,66,70,75,76]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 
@@ -204,7 +204,7 @@ public class ClientTest {
 
 		ResponseEntity responseEntity = restTemplate.getForEntity(url,
 				String.class);
-		String expected = "[65,70,75,76]";
+		String expected = "[65,66,70,75,76]";
 		assertEquals(expected, responseEntity.getBody());
 	}
 }

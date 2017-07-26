@@ -1,11 +1,16 @@
 package com.coderdream.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TypeConvertTest {
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(TypeConvertTest.class);
 
 	@Before
 	public void setUp() throws Exception {
@@ -23,12 +28,12 @@ public class TypeConvertTest {
 
 	@Test
 	public void testStringToByte() {
-//		String num = "1000";
-//		byte[] result = TypeConvert.stringToByte(num);
-//		for (byte b : result) {
-//			System.out.println(b);
-//		}
-//		fail("Not yet implemented");
+		// String num = "1000";
+		// byte[] result = TypeConvert.stringToByte(num);
+		// for (byte b : result) {
+		// logger.debug(b);
+		// }
+		// fail("Not yet implemented");
 	}
 
 	@Test
@@ -41,7 +46,7 @@ public class TypeConvertTest {
 		int num = 1000;
 		byte[] result = TypeConvert.intToBytes(num);
 		for (byte b : result) {
-			System.out.println(b);
+			logger.debug("" + b);
 		}
 		// fail("Not yet implemented");
 	}

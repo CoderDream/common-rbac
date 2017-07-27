@@ -169,7 +169,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<httpConnector>
-						<port>10080</port>
+						<port>10086</port>
 						<idleTimeout>60000</idleTimeout>
 					</httpConnector>
 					<webApp>

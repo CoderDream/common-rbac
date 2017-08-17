@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.billjc.dao.FunctionMapper">
+	<resultMap id="BaseResultMap" type="com.billjc.model.Function">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="function_name" jdbcType="VARCHAR" property="functionName" />
+		<result column="function_description" jdbcType="VARCHAR"
+			property="functionDescription" />
+		<result column="system_id" jdbcType="BIGINT" property="systemId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, function_name, function_description, system_id
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from [function]
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<resultMap id="FunctonNameResultMap" type="java.util.HashMap">
+		<result column="id" property="key" />
+		<result column="function_name" property="value" />
+	</resultMap>
+
+	<resultMap id="FunctionMap" type="com.billjc.model.Function">
+		<id property="id" column="id" />
+		<result property="functionName" column="function_name" />
+	</resultMap>
+	<select id="selectFunctonNamesByParams" parameterType="java.lang.String"
+		resultMap="FunctionMap">
+		SELECT
+		f.id id,
+		f.function_name function_name
+		FROM
+		[user_role]
+		ur,
+		[role_function] rf,
+		[function] f,
+		[user] u
+		WHERE
+		u.id = ur.user_id
+		AND
+		ur.role_id = rf.role_id
+		AND rf.function_id = f.id
+		AND
+		u.work_id =
+		'${param1}';
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		[function]
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.billjc.model.Function">
+		insert into [function] (id,
+		function_name, function_description,
+		system_id)
+		values
+		(#{id,jdbcType=BIGINT}, #{functionName,jdbcType=VARCHAR},
+		#{functionDescription,jdbcType=VARCHAR},
+		#{systemId,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.billjc.model.Function">
+		insert into [function]
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="functionName != null">
+				function_name,
+			</if>
+			<if test="functionDescription != null">
+				function_description,
+			</if>
+			<if test="systemId != null">
+				system_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="functionName != null">
+				#{functionName,jdbcType=VARCHAR},
+			</if>
+			<if test="functionDescription != null">
+				#{functionDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="systemId != null">
+				#{systemId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.billjc.model.Function">
+		update [function]
+		<set>
+			<if test="functionName != null">
+				function_name = #{functionName,jdbcType=VARCHAR},
+			</if>
+			<if test="functionDescription != null">
+				function_description =
+				#{functionDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="systemId != null">
+				system_id = #{systemId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.billjc.model.Function">
+		update [function]
+		set function_name = #{functionName,jdbcType=VARCHAR},
+		function_description = #{functionDescription,jdbcType=VARCHAR},
+		system_id = #{systemId,jdbcType=BIGINT}
+		where id =
+		#{id,jdbcType=BIGINT}
+	</update>
+</mapper>

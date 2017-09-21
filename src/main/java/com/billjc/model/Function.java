@@ -2,8 +2,8 @@ package com.billjc.model;
 
 public class Function {
     private Long id;
-
-    private String functionName;
+    
+    private String functionKey;
 
     private String functionDescription;
 
@@ -17,12 +17,12 @@ public class Function {
         this.id = id;
     }
 
-    public String getFunctionName() {
-        return functionName;
+    public String getFunctionKey() {
+        return functionKey;
     }
 
-    public void setFunctionName(String functionName) {
-        this.functionName = functionName == null ? null : functionName.trim();
+    public void setFunctionKey(String functionKey) {
+        this.functionKey = functionKey == null ? null : functionKey.trim();
     }
 
     public String getFunctionDescription() {

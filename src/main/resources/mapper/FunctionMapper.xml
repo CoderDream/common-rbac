@@ -3,13 +3,13 @@
 <mapper namespace="com.billjc.dao.FunctionMapper">
 	<resultMap id="BaseResultMap" type="com.billjc.model.Function">
 		<id column="id" jdbcType="BIGINT" property="id" />
-		<result column="function_name" jdbcType="VARCHAR" property="functionName" />
+		<result column="function_key" jdbcType="VARCHAR" property="functionKey" />
 		<result column="function_description" jdbcType="VARCHAR"
 			property="functionDescription" />
 		<result column="system_id" jdbcType="BIGINT" property="systemId" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, function_name, function_description, system_id
+		id, function_key, function_description, system_id
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
 		resultMap="BaseResultMap">
@@ -21,18 +21,18 @@
 
 	<resultMap id="FunctonNameResultMap" type="java.util.HashMap">
 		<result column="id" property="key" />
-		<result column="function_name" property="value" />
+		<result column="function_key" property="value" />
 	</resultMap>
 
 	<resultMap id="FunctionMap" type="com.billjc.model.Function">
 		<id property="id" column="id" />
-		<result property="functionName" column="function_name" />
+		<result property="functionKey" column="function_key" />
 	</resultMap>
 	<select id="selectFunctonNamesByParams" parameterType="java.lang.String"
 		resultMap="FunctionMap">
 		SELECT
 		f.id id,
-		f.function_name function_name
+		f.function_key function_key
 		FROM
 		[user_role]
 		ur,
@@ -56,10 +56,10 @@
 	</delete>
 	<insert id="insert" parameterType="com.billjc.model.Function">
 		insert into [function] (id,
-		function_name, function_description,
+		function_key, function_description,
 		system_id)
 		values
-		(#{id,jdbcType=BIGINT}, #{functionName,jdbcType=VARCHAR},
+		(#{id,jdbcType=BIGINT}, #{functionKey,jdbcType=VARCHAR},
 		#{functionDescription,jdbcType=VARCHAR},
 		#{systemId,jdbcType=BIGINT})
 	</insert>
@@ -69,8 +69,8 @@
 			<if test="id != null">
 				id,
 			</if>
-			<if test="functionName != null">
-				function_name,
+			<if test="functionKey != null">
+				function_key,
 			</if>
 			<if test="functionDescription != null">
 				function_description,
@@ -83,8 +83,8 @@
 			<if test="id != null">
 				#{id,jdbcType=BIGINT},
 			</if>
-			<if test="functionName != null">
-				#{functionName,jdbcType=VARCHAR},
+			<if test="functionKey != null">
+				#{functionKey,jdbcType=VARCHAR},
 			</if>
 			<if test="functionDescription != null">
 				#{functionDescription,jdbcType=VARCHAR},
@@ -97,8 +97,8 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.billjc.model.Function">
 		update [function]
 		<set>
-			<if test="functionName != null">
-				function_name = #{functionName,jdbcType=VARCHAR},
+			<if test="functionKey != null">
+				function_key = #{functionKey,jdbcType=VARCHAR},
 			</if>
 			<if test="functionDescription != null">
 				function_description =
@@ -112,7 +112,7 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.billjc.model.Function">
 		update [function]
-		set function_name = #{functionName,jdbcType=VARCHAR},
+		set function_key = #{functionKey,jdbcType=VARCHAR},
 		function_description = #{functionDescription,jdbcType=VARCHAR},
 		system_id = #{systemId,jdbcType=BIGINT}
 		where id =

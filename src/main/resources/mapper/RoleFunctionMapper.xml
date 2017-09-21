@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.billjc.model.RoleFunction">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
-    <result column="function_id" jdbcType="BIGINT" property="functionId" />
+    <result column="function_id" jdbcType="BIGINT" property="functionKey" />
   </resultMap>
   <sql id="Base_Column_List">
     id, role_id, function_id
@@ -22,7 +22,7 @@
   <insert id="insert" parameterType="com.billjc.model.RoleFunction">
     insert into role_function (id, role_id, function_id
       )
-    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{functionId,jdbcType=BIGINT}
+    values (#{id,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{functionKey,jdbcType=BIGINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.billjc.model.RoleFunction">
@@ -34,7 +34,7 @@
       <if test="roleId != null">
         role_id,
       </if>
-      <if test="functionId != null">
+      <if test="functionKey != null">
         function_id,
       </if>
     </trim>
@@ -45,8 +45,8 @@
       <if test="roleId != null">
         #{roleId,jdbcType=BIGINT},
       </if>
-      <if test="functionId != null">
-        #{functionId,jdbcType=BIGINT},
+      <if test="functionKey != null">
+        #{functionKey,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -56,8 +56,8 @@
       <if test="roleId != null">
         role_id = #{roleId,jdbcType=BIGINT},
       </if>
-      <if test="functionId != null">
-        function_id = #{functionId,jdbcType=BIGINT},
+      <if test="functionKey != null">
+        function_id = #{functionKey,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -65,7 +65,7 @@
   <update id="updateByPrimaryKey" parameterType="com.billjc.model.RoleFunction">
     update role_function
     set role_id = #{roleId,jdbcType=BIGINT},
-      function_id = #{functionId,jdbcType=BIGINT}
+      function_id = #{functionKey,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

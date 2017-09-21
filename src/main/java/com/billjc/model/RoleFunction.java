@@ -5,7 +5,7 @@ public class RoleFunction {
 
     private Long roleId;
 
-    private Long functionId;
+    private Long functionKey;
 
     public Long getId() {
         return id;
@@ -23,11 +23,11 @@ public class RoleFunction {
         this.roleId = roleId;
     }
 
-    public Long getFunctionId() {
-        return functionId;
+    public Long getFunctionKey() {
+        return functionKey;
     }
 
-    public void setFunctionId(Long functionId) {
-        this.functionId = functionId;
+    public void setFunctionKey(Long functionKey) {
+        this.functionKey = functionKey;
     }
 }

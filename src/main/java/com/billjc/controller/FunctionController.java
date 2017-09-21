@@ -1,9 +1,7 @@
 package com.billjc.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,45 +32,46 @@ public class FunctionController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/getFunctionIdsByWorkId/{workId}", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-	public @ResponseBody String getFunctionIdsByWorkId(
+	@RequestMapping(value = "/getFunctionKeysByWorkId/{workId}", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+	public @ResponseBody String getFunctionKeysByWorkId(
 					@PathVariable(value = "workId") String workId) {
 		ObjectMapper mapper = new ObjectMapper();
-		List<Long> functionIds = new ArrayList<Long>();
+		List<String> functionKeys = new ArrayList<String>();
 		List<Function> functionMap = functionService
 						.selectFunctonNamesByParams(workId);
 		for (Function function : functionMap) {
-			logger.debug(function.getId() + "\t" + function.getFunctionName());
-			functionIds.add(function.getId());
+			logger.debug(function.getId() + "\t" + function.getFunctionKey());
+			functionKeys.add(function.getFunctionKey());
 		}
 
 		try {
-			return mapper.writeValueAsString(functionIds);
+			return mapper.writeValueAsString(functionKeys);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	@RequestMapping(value = "/getFunctionsByWorkId/{workId}", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
-	public @ResponseBody String findResourceIds(
-					@PathVariable(value = "workId") String workId) {
-		ObjectMapper mapper = new ObjectMapper();
-		Map<Long, String> map = new HashMap<Long, String>();
-		List<Function> functionMap = functionService
-						.selectFunctonNamesByParams(workId);
-		for (Function function : functionMap) {
-			logger.debug(function.getId() + "\t" + function.getFunctionName());
-			map.put(function.getId(), function.getFunctionName());
-		}
-
-		try {
-			return mapper.writeValueAsString(map);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+	// @RequestMapping(value = "/getFunctionsByWorkId/{workId}", produces =
+	// "application/json;charset=UTF-8", method = RequestMethod.GET)
+	// public @ResponseBody String findResourceIds(
+	// @PathVariable(value = "workId") String workId) {
+	// ObjectMapper mapper = new ObjectMapper();
+	// Map<Long, String> map = new HashMap<Long, String>();
+	// List<Function> functionMap = functionService
+	// .selectFunctonNamesByParams(workId);
+	// for (Function function : functionMap) {
+	// logger.debug(function.getId() + "\t" + function.getFunctionName());
+	// map.put(function.getId(), function.getFunctionName());
+	// }
+	//
+	// try {
+	// return mapper.writeValueAsString(map);
+	// } catch (JsonProcessingException e) {
+	// e.printStackTrace();
+	// return null;
+	// }
+	// }
 
 	@RequestMapping(value = "/getFunctions", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
 	public @ResponseBody String getFunctions() {

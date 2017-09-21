@@ -1,14 +1,12 @@
 package com.billjc.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.billjc.base.BaseTest;
 import com.billjc.model.Function;
-import com.billjc.vo.ProjectAuditView;
 
 public class FunctionServiceTest extends BaseTest {
 
@@ -20,7 +18,7 @@ public class FunctionServiceTest extends BaseTest {
 		Long id = 1L;
 		Function function = functionService.selectByPrimaryKey(id);
 		System.out.println(
-						function.getId() + "\t" + function.getFunctionName());
+						function.getId() + "\t" + function.getFunctionKey());
 	}
 
 	// @Test
@@ -41,7 +39,7 @@ public class FunctionServiceTest extends BaseTest {
 						.selectFunctonNamesByParams(workId);
 		for (Function function : functionMap) {
 			System.out.println(function.getId() + "\t"
-							+ function.getFunctionName());
+							+ function.getFunctionKey());
 		}
 	}
 
